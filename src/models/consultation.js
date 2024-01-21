@@ -7,7 +7,9 @@ const SchemaConsultation = new Schema({
     description:String,
     date: Date,
     time: String,
-    finished: Boolean
+    finished: Boolean,
+    tags:Array,
+    notified: Boolean,
 })
 
 const ModelConsultation = model('Consultation', SchemaConsultation)

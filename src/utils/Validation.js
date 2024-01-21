@@ -18,7 +18,7 @@ class Validation {
   EmailFormat() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
     if (!emailRegex.test(this.data.email))
-      throw new ERROR_CUSTOM(`Formato de email inválido`).NotValid();
+      throw new ERROR_CUSTOM(`Formato de email inválido`).NotValid
   }
   Check() {
     var msg;
@@ -34,7 +34,7 @@ class Validation {
         msg = names[input]
           ? `O ${names[input]} é invalido`
           : `Marque todos os campos!`;
-        throw new ERROR_CUSTOM(msg).NotValid();
+        throw new ERROR_CUSTOM(msg).NotValid
       } else if (this.inputs[input] != undefined && option == null)
         this.inputs[input]();
     });

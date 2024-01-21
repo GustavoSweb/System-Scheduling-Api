@@ -19,7 +19,45 @@ async GetAll(req, res){
     const data = await ConsultationServices.FindAll()
     res.json(data)
   }catch(err){
+    if(err?.status) return res.status(err.status).json({err:err.message})
     res.sendStatus(INTERNAL_SERVER_ERROR)
+    }
+  }
+async GetOne(req, res){
+  try{
+    const {id} = req.params
+    const data = await ConsultationServices.FindOne(id)
+    res.json(data)
+  }catch(err){
+    if(err?.status) return res.status(err.status).json({err:err.message})
+    res.sendStatus(INTERNAL_SERVER_ERROR)
+    }
+  }
+async Finished(req, res){
+  try{
+    const {id} = req.params
+    await ConsultationServices.Finished(id)
+    res.sendStatus(200)
+  }catch(err){
+    if(err?.status) return res.status(err.status).json({err:err.message})
+    res.sendStatus(INTERNAL_SERVER_ERROR)
+}
+}
+async SearchByText(req, res){
+  var {text} = req.params
+  try{
+    var textSimplifyArray = []
+    text = text.toUpperCase().replace(/@.+\..+$/, '')
+    text = text.split('.').join('-').split(' ').join('-').split('-')
+    textSimplifyArray.push(...text)
+    console.log(textSimplifyArray)
+    
+    const data = await ConsultationServices.FindIndiceText(textSimplifyArray)
+    res.status(200).json(data)
+    }catch(err){
+      console.log(err)
+      if(err?.status) return res.status(err.status).json({err:err.message})
+      res.sendStatus(INTERNAL_SERVER_ERROR)
     }
   }
 }

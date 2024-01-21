@@ -9,6 +9,8 @@ import mongoose from "mongoose";
 import chalk from 'chalk';
 import ConsultationRouter from './routers/consultation.js'
 import cors from 'cors'
+import SchedulesEmail from './utils/SchedulesEmail/index.js';
+SchedulesEmail()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
